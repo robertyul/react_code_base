@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var names = ['Alice', 'Emily', 'Kate'];
+
+      var Todo_list = React.createClass({
+          getInitialState: function() {
+          return {value: 0};
+          },
+          handleBlur: function(e) {
+            this.refs.myTextInput.value="ok";
+            var temp =this.state.value + 1;
+            this.setState({value:e.target.value})
+          },
+          render: function () {
+             return <div>
+                <Input handleBlur={this.handleBlur}></Input>
+                <List></List>
+                <span>{this.state.value}</span>
+                <input type="text" ref="myTextInput"/>
+                <Foot></Foot>
+              </div>;
+          }
+      });
+      var Input = React.createClass({
+          render : function () {
+              return <input onBlur={this.props.handleBlur}/>
+          }
+      });
+      var List = React.createClass({
+          render : function () {
+            return  <ul>
+                <li></li>
+              </ul>;
+          }
+      });
+      var Foot = React.createClass({
+          render: function () {
+              return <button></button>;
+          }
+      });
+
+
+      ReactDOM.render(
+              <Todo_list/>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
